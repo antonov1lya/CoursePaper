@@ -11,7 +11,7 @@ private:
         second = tmp;
     }
 public:
-    Heap(int d){
+    DHeap(int d){
         this->d=d;
         n=0;
         capacity=0;
@@ -41,8 +41,8 @@ public:
             while (true){
                 int j = i;
                 for (int k=1; k<d+1; ++k) {
-                    if (2 * i + k < n and h[2 * i + k] < h[j]) {
-                        j = 2 * i + k;
+                    if (d * i + k < n and h[d * i + k] < h[j]) {
+                        j = d * i + k;
                     }
                 }
                 if (i==j){

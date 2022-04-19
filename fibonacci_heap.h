@@ -2,7 +2,6 @@
 #define FIBONACCI_HEAP_FIBONACCI_HEAP_H
 #include <vector>
 #include <cmath>
-
 template<typename Type>
 class FibonacciHeap{
 private:
