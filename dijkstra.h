@@ -15,6 +15,7 @@ public:
     void MLBImplementation();
     void DHeapImplementation(int D);
     void FibonacciImplementation();
+    void PriorityQueue();
 };
 
 #endif //COURSE_PAPER_DIJKSTRA_H

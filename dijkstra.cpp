@@ -2,6 +2,7 @@
 #include "multi_level_buckets.h"
 #include "d_heap.h"
 #include "fibonacci_heap.h"
+#include <queue>
 
 void Path(std::vector<int>& path, int i, int finish){
     if(path[i]!=-1) {
@@ -102,7 +103,8 @@ void Dijkstra::MLBImplementation() {
             min = i.second;
         }
     }
-    MLB q((minWeight+maxWeight)/2,min);
+//    MLB q((minWeight+maxWeight)/2,min);
+    MLB q(5,min);
     for(auto i: adjacencyList[start]){
         d[i.first]=i.second;
         q.push(d[i.first], i.first);
@@ -190,6 +192,41 @@ void Dijkstra::FibonacciImplementation() {
                         d[i.first] = d[current] + i.second;
                         path[i.first] = current;
                         q.insert(std::make_pair(d[i.first], i.first));
+                    }
+                }
+            }
+        }
+
+    }
+
+    if (d[finish] == 9223372036854775807) {
+        std::cout << "-1" << std::endl;
+    } else {
+        Path(path, finish, finish);
+        std::cout << "Distance: " << d[finish] << std::endl;
+    }
+}
+
+void Dijkstra::PriorityQueue() {
+    std::vector<long long> d(n, 9223372036854775807), used(n, 0), path(n, -1);
+    int current = 0;
+    d[current] = 0;
+    std::priority_queue<std::pair<int, int>> q;
+    q.push(std::make_pair(-0, current));
+    while (!q.empty()) {
+        current = q.top().second;
+        q.pop();
+        if(current==finish){
+            break;
+        }
+        if(!used[current]) {
+            used[current] = 1;
+            for (auto i: adjacencyList[current]) {
+                if (!used[i.first]) {
+                    if (d[current] + i.second < d[i.first]) {
+                        d[i.first] = d[current] + i.second;
+                        path[i.first] = current;
+                        q.push(std::make_pair(-d[i.first], i.first));
                     }
                 }
             }
