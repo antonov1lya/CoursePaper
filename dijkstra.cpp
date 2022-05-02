@@ -104,11 +104,14 @@ void Dijkstra::MLBImplementation() {
         }
     }
 //    MLB q((minWeight+maxWeight)/2,min);
+    used[start]=1;
     MLB q(5,min);
     for(auto i: adjacencyList[start]){
-        d[i.first]=i.second;
-        q.push(d[i.first], i.first);
-        path[i.first] = current;
+        if (d[current] + i.second < d[i.first]) {
+            d[i.first] = i.second;
+            q.push(d[i.first], i.first);
+            path[i.first] = current;
+        }
     }
     while (!q.empty()) {
         current = q.pop();
