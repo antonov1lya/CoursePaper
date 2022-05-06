@@ -1,7 +1,9 @@
 #ifndef FIBONACCI_HEAP_FIBONACCI_HEAP_H
 #define FIBONACCI_HEAP_FIBONACCI_HEAP_H
+
 #include <vector>
 #include <cmath>
+
 template<typename Type>
 class FibonacciHeap {
 private:
@@ -60,8 +62,8 @@ private:
         min = nullptr;
         for (int i = 0; i < D + 1; ++i) {
             if (A[i] != nullptr) {
-                A[i]->left=A[i];
-                A[i]->right=A[i];
+                A[i]->left = A[i];
+                A[i]->right = A[i];
                 if (min == nullptr) {
                     min = A[i];
                 } else {
@@ -121,4 +123,5 @@ public:
         return !size;
     }
 };
+
 #endif //FIBONACCI_HEAP_FIBONACCI_HEAP_H
