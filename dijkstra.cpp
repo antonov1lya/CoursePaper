@@ -4,21 +4,8 @@
 #include "d_heap.h"
 #include "fibonacci_heap.h"
 
-void Path(std::vector<int> &path, int i, int finish) {
-    if (path[i] != -1) {
-        if (i != finish) {
-            Path(path, path[i], finish);
-            std::cout << i + 1 << " ";
-        } else {
-            Path(path, path[i], finish);
-            std::cout << i + 1 << std::endl;
-        }
-    } else {
-        std::cout << i + 1 << " ";
-    }
-}
 
-void Path(std::vector<long long> &path, int i, int finish) {
+void Path(std::vector<long long> &path, long long i, long long finish) {
     if (path[i] != -1) {
         if (i != finish) {
             Path(path, path[i], finish);
@@ -39,9 +26,9 @@ Dijkstra::Dijkstra(std::string path) {
     --start;
     --finish;
     adjacencyList.resize(n);
-    std::pair<int, int> buffer;
-    int weight = 0;
-    for (int i = 0; i < m; ++i) {
+    std::pair<long long, long long> buffer;
+    long long weight = 0;
+    for (long long i = 0; i < m; ++i) {
         fr >> buffer.first >> buffer.second >> weight;
         --buffer.first;
         --buffer.second;
@@ -54,8 +41,8 @@ Dijkstra::Dijkstra(std::string path) {
 }
 
 void Dijkstra::NaiveImplementation() {
-    std::vector<int> d(n, 100000000), used(n, 0), path(n, -1);
-    int current = 0;
+    std::vector<long long> d(n, inf), used(n, 0), path(n, -1);
+    long long current = 0;
     d[current] = 0;
     while (current >= 0) {
         if (current == finish) {
@@ -71,26 +58,26 @@ void Dijkstra::NaiveImplementation() {
             }
         }
         current = -1;
-        int min = 100000000;
-        for (int i = 0; i < n; ++i) {
+        long long min = inf;
+        for (long long i = 0; i < n; ++i) {
             if (d[i] < min and !used[i]) {
                 current = i;
                 min = d[i];
             }
         }
     }
-    if (d[finish] == 100000000) {
+    if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-        Path(path, finish, finish);
+//        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 
 }
 
 void Dijkstra::MLBImplementationArray() {
-    std::vector<long long> d(n, 9223372036854775807), used(n, 0), path(n, -1);
-    int current = 0;
+    std::vector<long long> d(n, inf), used(n, 0), path(n, -1);
+    long long current = 0;
     d[current] = 0;
     MLBArray q(C);
     q.push(0,start);
@@ -114,19 +101,19 @@ void Dijkstra::MLBImplementationArray() {
 
     }
 
-    if (d[finish] == 9223372036854775807) {
+    if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-        Path(path, finish, finish);
+//        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 }
 
-void Dijkstra::DHeapImplementation(int D) {
-    std::vector<long long> d(n, 9223372036854775807), used(n, 0), path(n, -1);
-    int current = 0;
+void Dijkstra::DHeapImplementation(long long D) {
+    std::vector<long long> d(n, inf), used(n, 0), path(n, -1);
+    long long current = 0;
     d[current] = 0;
-    DHeap<std::pair<int, int>> q(D);
+    DHeap<std::pair<long long, long long>> q(D);
     q.push(std::make_pair(0, current));
     while (!q.empty()) {
         current = q.pop().second;
@@ -148,19 +135,19 @@ void Dijkstra::DHeapImplementation(int D) {
 
     }
 
-    if (d[finish] == 9223372036854775807) {
+    if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-        Path(path, finish, finish);
+//        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 }
 
 void Dijkstra::FibonacciImplementation() {
-    std::vector<long long> d(n, 9223372036854775807), used(n, 0), path(n, -1);
-    int current = 0;
+    std::vector<long long> d(n, inf), used(n, 0), path(n, -1);
+    long long current = 0;
     d[current] = 0;
-    FibonacciHeap<std::pair<int, int>> q;
+    FibonacciHeap<std::pair<long long, long long>> q;
     q.insert(std::make_pair(0, current));
     while (!q.empty()) {
         current = q.extractMin().second;
@@ -181,47 +168,47 @@ void Dijkstra::FibonacciImplementation() {
         }
 
     }
-    if (d[finish] == 9223372036854775807) {
+    if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-        Path(path, finish, finish);
+//        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 }
 
-//void Dijkstra::MLBImplementationList() {
-//    std::vector<long long> d(n, 9223372036854775807), used(n, 0), path(n, -1);
-//    int current = 0;
-//    d[current] = 0;
-//    MLBList q(C);
-//    q.push(0,start);
-//    while (!q.empty()) {
-//        current = q.pop();
-//        if (current == finish) {
-//            break;
-//        }
-//        if (!used[current]) {
-//            used[current] = 1;
-//            for (auto i: adjacencyList[current]) {
-//                if (!used[i.first]) {
-//                    if (d[current] + i.second < d[i.first]) {
-//                        d[i.first] = d[current] + i.second;
-//                        path[i.first] = current;
-//                        q.push(d[i.first], i.first);
-//                    }
-//                }
-//            }
-//        }
-//
-//    }
-//
-//    if (d[finish] == 9223372036854775807) {
-//        std::cout << "-1" << std::endl;
-//    } else {
+void Dijkstra::MLBImplementationList() {
+    std::vector<long long> d(n, inf), used(n, 0), path(n, -1);
+    long long current = 0;
+    d[current] = 0;
+    MLBList q(C);
+    q.push(0,start);
+    while (!q.empty()) {
+        current = q.pop();
+        if (current == finish) {
+            break;
+        }
+        if (!used[current]) {
+            used[current] = 1;
+            for (auto i: adjacencyList[current]) {
+                if (!used[i.first]) {
+                    if (d[current] + i.second < d[i.first]) {
+                        d[i.first] = d[current] + i.second;
+                        path[i.first] = current;
+                        q.push(d[i.first], i.first);
+                    }
+                }
+            }
+        }
+
+    }
+
+    if (d[finish] == inf) {
+        std::cout << "-1" << std::endl;
+    } else {
 //        Path(path, finish, finish);
-//        std::cout << "Distance: " << d[finish] << std::endl;
-//    }
-//}
+        std::cout << "Distance: " << d[finish] << std::endl;
+    }
+}
 
 
 

@@ -17,19 +17,19 @@ int main() {
 //    elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
 //    std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
 
+    std::cout << "MLB implementationList" << std::endl;
+    begin = std::chrono::steady_clock::now();
+    a.MLBImplementationList();
+    end = std::chrono::steady_clock::now();
+    elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
+    std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
+
     std::cout << "MLB implementationArray" << std::endl;
     begin = std::chrono::steady_clock::now();
     a.MLBImplementationArray();
     end = std::chrono::steady_clock::now();
     elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
     std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
-
-//    std::cout << "MLB implementationList" << std::endl;
-//    begin = std::chrono::steady_clock::now();
-//    a.MLBImplementationList();
-//    end = std::chrono::steady_clock::now();
-//    elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
-//    std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
 
     std::cout << "8DHeap implementation" << std::endl;
     begin = std::chrono::steady_clock::now();

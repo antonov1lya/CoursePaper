@@ -9,8 +9,8 @@
 class Dijkstra {
 private:
     int n = 0, m = 0, start = 0, finish = 0;
-    std::vector<std::vector<std::pair<int, long long>>> adjacencyList;
-    long long C = 0;
+    std::vector<std::vector<std::pair<long long, long long>>> adjacencyList;
+    long long C = 0, inf = 9223372036854775807;
 public:
     Dijkstra(std::string path);
 
@@ -20,7 +20,7 @@ public:
 
     void MLBImplementationList();
 
-    void DHeapImplementation(int D);
+    void DHeapImplementation(long long D);
 
     void FibonacciImplementation();
 
