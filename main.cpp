@@ -1,15 +1,23 @@
 ﻿#include <iostream>
 #include <chrono>
+#include <string>
 #include "dijkstra.h"
 
 int main() {
-    std::string path = "C:/Users/a222i/PycharmProjects/tests/output.txt";
-    Dijkstra a(path);
 
+    std::string path = "F:/tests/1000000_150000_5.txt";
+    Dijkstra a(path);
     auto begin = std::chrono::steady_clock::now();
     auto end = std::chrono::steady_clock::now();
     auto elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
 
+//    std::cout << "Naive implementation matrix" << std::endl;
+//    begin = std::chrono::steady_clock::now();
+//    a.NaiveImplementationMatrix();
+//    end = std::chrono::steady_clock::now();
+//    elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
+//    std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
+//
 //    std::cout << "Naive implementation" << std::endl;
 //    begin = std::chrono::steady_clock::now();
 //    a.NaiveImplementation();
@@ -17,16 +25,17 @@ int main() {
 //    elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
 //    std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
 
-    std::cout << "MLB implementationList" << std::endl;
-    begin = std::chrono::steady_clock::now();
-    a.MLBImplementationList();
-    end = std::chrono::steady_clock::now();
-    elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
-    std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
 
     std::cout << "MLB implementationArray" << std::endl;
     begin = std::chrono::steady_clock::now();
     a.MLBImplementationArray();
+    end = std::chrono::steady_clock::now();
+    elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
+    std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
+
+    std::cout << "MLB implementationHeap" << std::endl;
+    begin = std::chrono::steady_clock::now();
+    a.MLBImplementationHeap();
     end = std::chrono::steady_clock::now();
     elapsed_ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin);
     std::cout << "The time: " << elapsed_ms.count() << " ms" << std::endl << std::endl;
