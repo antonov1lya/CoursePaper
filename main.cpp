@@ -5,7 +5,7 @@
 
 int main() {
 
-    std::string path = "F:/tests/1000000_150000_5.txt";
+    std::string path = "input.txt";
     Dijkstra a(path);
     auto begin = std::chrono::steady_clock::now();
     auto end = std::chrono::steady_clock::now();

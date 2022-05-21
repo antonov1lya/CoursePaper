@@ -47,9 +47,9 @@ void Dijkstra::NaiveImplementation() {
     long long current = 0;
     d[current] = 0;
     while (current >= 0) {
-//        if (current == finish) {
-//            break;
-//        }
+        if (current == finish) {
+            break;
+        }
         used[current] = 1;
         for (auto i: adjacencyList[current]) {
             if (!used[i.first]) {
@@ -71,7 +71,7 @@ void Dijkstra::NaiveImplementation() {
     if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-//        Path(path, finish, finish);
+        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 }
@@ -84,9 +84,9 @@ void Dijkstra::MLBImplementationArray() {
     q.push(0, start);
     while (!q.empty()) {
         current = q.pop();
-//        if (current == finish) {
-//            break;
-//        }
+        if (current == finish) {
+            break;
+        }
         if (!used[current]) {
             used[current] = 1;
             for (auto i: adjacencyList[current]) {
@@ -105,7 +105,7 @@ void Dijkstra::MLBImplementationArray() {
     if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-//        Path(path, finish, finish);
+        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 }
@@ -118,9 +118,9 @@ void Dijkstra::DHeapImplementation(long long D) {
     q.push(std::make_pair(0, current));
     while (!q.empty()) {
         current = q.pop().second;
-//        if (current == finish) {
-//            break;
-//        }
+        if (current == finish) {
+            break;
+        }
         if (!used[current]) {
             used[current] = 1;
             for (auto i: adjacencyList[current]) {
@@ -139,7 +139,7 @@ void Dijkstra::DHeapImplementation(long long D) {
     if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-//        Path(path, finish, finish);
+        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 }
@@ -152,9 +152,9 @@ void Dijkstra::FibonacciImplementation() {
     q.insert(std::make_pair(0, current));
     while (!q.empty()) {
         current = q.extractMin().second;
-//        if (current == finish) {
-//            break;
-//        }
+        if (current == finish) {
+            break;
+        }
         if (!used[current]) {
             used[current] = 1;
             for (auto i: adjacencyList[current]) {
@@ -172,7 +172,7 @@ void Dijkstra::FibonacciImplementation() {
     if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-//        Path(path, finish, finish);
+        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 }
@@ -185,9 +185,9 @@ void Dijkstra::MLBImplementationHeap() {
     q.push(0, start);
     while (!q.empty()) {
         current = q.pop();
-//        if (current == finish) {
-//            break;
-//        }
+        if (current == finish) {
+            break;
+        }
         if (!used[current]) {
             used[current] = 1;
             for (auto i: adjacencyList[current]) {
@@ -206,7 +206,7 @@ void Dijkstra::MLBImplementationHeap() {
     if (d[finish] == inf) {
         std::cout << "-1" << std::endl;
     } else {
-//        Path(path, finish, finish);
+        Path(path, finish, finish);
         std::cout << "Distance: " << d[finish] << std::endl;
     }
 }
